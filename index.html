@@ -1152,13 +1152,26 @@ tbody tr:hover {
     let medications = [];
     let reminders = [];
     let medicationLogs = [];
-    
-    // ตัวแปรสำหรับการแจ้งเตือน
+    let lastFetchTime = {
+        medications: null,
+        reminders: null,
+        medicationLogs: null
+    };
+    let charts = {
+        timeDistribution: null,
+        adherence: null,
+        dailyLogs: null
+    };
+
+// ตัวแปรสำหรับการแจ้งเตือน
     let soundEnabled = true;
     let activeReminders = [];
     let checkInterval;
     let lastTimeCheck = '';
     let notificationTimeout;
+    let isInitialLoad = true;
+    let isFetchingData = false;
+
     
     // ฟังก์ชันเปิด/ปิดเสียง
     function toggleSound() {
